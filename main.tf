@@ -15,3 +15,19 @@ resource "aws_instance" "my_server" {
     Name = "My_terraform_Server"
   }
 }
+
+resource "aws_vpc" "andreas_vpc" {
+  cidr_block = "10.0.0.0/16"
+    tags = {
+    Name = "Production_vpc"
+  }
+}
+
+resource "aws_subnet" "subnet-1" {
+  vpc_id     = aws_vpc.andreas_vpc.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "pro-subnet"
+  }
+}
